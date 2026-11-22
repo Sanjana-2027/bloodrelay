@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RedRelay - LifeLine</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#fff5f5;color:#222}
+button{cursor:pointer;border:none;border-radius:8px;padding:12px 20px;font-weight:bold}
+.red{background:#d32f2f;color:#fff}.white{background:#fff;border:1px solid #ddd;color:#333}.full{width:100%}
+header{background:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 30px;position:sticky;top:0;box-shadow:0 2px 10px #0001}
+.logo{font-weight:900;font-size:22px;color:#d32f2f}.logo span{color:#222;font-size:14px}
+nav a{margin-left:18px;text-decoration:none;color:#444;font-weight:bold;font-size:14px}
+.hero{display:flex;gap:30px;justify-content:space-between;padding:50px 8%;background:#fff;align-items:center}
+.badge{background:#ffe8e8;color:#d32f2f;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:bold}
+.hero h1{font-size:48px;line-height:1.1;margin:15px 0}.hero p{color:#666;margin-bottom:15px}
+.stats{display:flex;gap:25px;margin-top:25px}.stats b{font-size:22px;color:#d32f2f}
+.hero-card{background:#fff;border:1px solid #eee;border-radius:16px;padding:25px;width:340px;box-shadow:0 5px 20px #0001}
+.hero-card h3{font-size:26px;margin-bottom:15px}
+.mini-stats{display:flex;gap:20px;background:#fff5f5;padding:15px;border-radius:12px;margin-bottom:12px}.mini-stats b{font-size:24px;color:#d32f2f}
+section{padding:40px 8%}
+.small{color:#d32f2f;font-weight:bold;font-size:12px;letter-spacing:1px}
+h2{font-size:30px;margin:8px 0 18px}
+.form-box{background:#fff;padding:22px;border-radius:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px;box-shadow:0 2px 12px #0001}
+.form-box input,.form-box select{padding:12px;border:1px solid #ddd;border-radius:8px;width:100%}
+.flex{display:flex;gap:10px;grid-template-columns:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:15px;margin-top:15px}
+.card{background:#fff;padding:18px;border-radius:14px;border-top:4px solid #d32f2f;box-shadow:0 2px 10px #0001}
+.card p{font-size:14px;color:#555;margin:4px 0}
+.pulse{display:inline-block;width:10px;height:10px;background:red;border-radius:50%;animation:pulse 1s infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.8);opacity:0}}
+.stepper{display:flex;gap:5px;flex-wrap:wrap;margin:10px 0}
+.step{font-size:11px;background:#eee;padding:5px 8px;border-radius:20px}.step.done{background:#2e7d32;color:#fff}
+.works{text-align:center;background:#fff}
+.steps{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:20px}.steps div{background:#fff5f5;padding:20px;border-radius:12px;width:180px}.steps span{font-size:28px}
+footer{background:#1a1a2e;color:#fff;text-align:center;padding:30px}
+footer p{color:#bbb;margin:8px 0}
+/* LOGIN */
+.login-bg{min-height:100vh;background:linear-gradient(135deg,#d32f2f,#ff6b6b);display:flex;justify-content:center;align-items:center;padding:20px}
+.login-box{background:#fff;width:100%;max-width:400px;padding:30px;border-radius:16px;box-shadow:0 10px 30px #0003;text-align:center}
+.login-box h1{color:#d32f2f;font-size:30px}.login-box h1 span{color:#222;font-size:16px}
+.login-box p{color:#666;margin:8px 0 15px}
+.login-tabs{display:flex;gap:10px;margin-bottom:15px}.login-tabs button{flex:1;background:#eee;color:#333}
+.login-tabs button.active{background:#d32f2f;color:#fff}
+#loginForm,#signupForm{display:flex;flex-direction:column;gap:12px}
+#loginForm input,#loginForm select,#signupForm input,#signupForm select{padding:12px;border:1px solid #ddd;border-radius:8px;width:100%}
+.hint{font-size:12px;color:#888 !important}
+@media(max-width:700px){.hero{flex-direction:column}.hero h1{font-size:34px}.form-box{grid-template-columns:1fr}.flex{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="login-bg">
+  <div class="login-box">
+    <h1>🩸 RedRelay <span>LifeLine</span></h1>
+    <p>Emergency Blood Donor Network</p>
+    <div class="login-tabs">
+      <button id="tabLogin" class="active" onclick="switchTab('login')">Login</button>
+      <button id="tabSignup" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+    <form id="loginForm">
+      <input id="loginEmail" type="email" placeholder="Email" required>
+      <input id="loginPass" type="password" placeholder="Password" required>
+      <select id="loginRole">
+        <option>Donor</option><option>Patient Family</option><option>Hospital</option>
+      </select>
+      <button class="red full" type="submit">Login to RedRelay</button>
+      <p class="hint">Demo: Any Email + Any Password - Ex: sanjana@gmail.com / 1234</p>
+    </form>
+    <form id="signupForm" style="display:none">
+      <input id="signName" placeholder="Full Name" required>
+      <input id="signEmail" type="email" placeholder="Email" required>
+      <input id="signPhone" placeholder="Phone (10 digits)" pattern="[0-9]{10}" required>
+      <input id="signPass" type="password" placeholder="Create Password" required>
+      <select id="signRole"><option>Donor</option><option>Patient Family</option><option>Hospital</option></select>
+      <button class="red full" type="submit">Create Account</button>
+    </form>
+  </div>
+</div>
+
+<!-- MAIN SITE -->
+<div id="mainSite" style="display:none">
+<header>
+  <div class="logo">🩸 RedRelay <span>LifeLine</span></div>
+  <nav><a href="#home">Dashboard</a><a href="#sos">Requests</a><a href="#donors">Donors</a><button class="red" onclick="logout()">Logout</button></nav>
+</header>
+
+<section id="home" class="hero">
+  <div>
+    <span class="badge">❤️ EMERGENCY NETWORK</span>
+    <h1>Welcome, <span id="userName">Donor</span> 👋<br>Every Drop Can Save a Life.</h1>
+    <p>Connects urgent blood requests with verified nearby donors in minutes.</p>
+    <button class="red" onclick="document.getElementById('sos').scrollIntoView({behavior:'smooth'})">Request Blood Now</button>
+    <button class="white" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">Become a Donor</button>
+    <div class="stats"><div><b>8</b><br>Donors</div><div><b>24/7</b><br>Support</div><div><b>100%</b><br>Private</div><div><b>90 Days</b><br>Recovery</div></div>
+  </div>
+  <div class="hero-card"><h3>Be Someone's<br>Hero Today</h3><div class="mini-stats"><div><b id="countDonors">30</b><br>Donors</div><div><b id="countReq">5</b><br>Requests</div></div><p>🩸 O- Universal Donor | AB+ Universal Recipient</p></div>
+</section>
+
+<section id="sos">
+  <p class="small">EMERGENCY SERVICE</p><h2>Request Blood SOS</h2>
+  <form id="sosForm" class="form-box">
+    <input id="pName" placeholder="Patient Name" required>
+    <select id="blood" required><option value="">Required Blood Group</option><option>O-</option><option>O+</option><option>A-</option><option>A+</option><option>B-</option><option>B+</option><option>AB-</option><option>AB+</option></select>
+    <input id="hospital" placeholder="Hospital / Locality" required>
+    <input id="units" type="number" placeholder="Units Required" min="1" required>
+    <input id="city" placeholder="City" required>
+    <input id="deadline" type="datetime-local" required>
+    <input id="doctor" placeholder="Doctor Verification Contact" required>
+    <button class="red full" type="submit">Broadcast Emergency SOS</button>
+  </form>
+</section>
+
+<section id="active"><p class="small">LIVE EMERGENCY FEED</p><h2>Active Blood Requests</h2><div id="reqList" class="grid"></div></section>
+
+<section id="donors"><p class="small">SEARCH & MATCH</p><h2>Find Blood Donors</h2>
+  <div class="form-box flex">
+    <select id="fBlood"><option value="">Select Recipient Blood Group</option><option>O-</option><option>O+</option><option>A-</option><option>A+</option><option>B-</option><option>B+</option><option>AB-</option><option>AB+</option></select>
+    <input id="fCity" placeholder="Filter by City">
+    <button class="red" type="button" onclick="renderDonors()">Find Compatible Donors</button>
+  </div>
+  <div id="donorList" class="grid"></div>
+</section>
+
+<section id="register"><p class="small">JOIN OUR MISSION</p><h2>Become a Voluntary Donor</h2>
+  <form id="donorForm" class="form-box">
+    <input id="dName" placeholder="Full Name" required>
+    <select id="dBlood" required><option value="">Blood Group</option><option>O-</option><option>O+</option><option>A-</option><option>A+</option><option>B-</option><option>B+</option><option>AB-</option><option>AB+</option></select>
+    <input id="dCity" placeholder="City" required>
+    <input id="dLocality" placeholder="Locality" required>
+    <input id="dPhone" placeholder="Phone Number (Private)" pattern="[0-9]{10}" required>
+    <select id="dAvail"><option>Available</option><option>Not Available</option></select>
+    <button class="red full" type="submit">Register as Donor</button>
+  </form>
+  <div id="cert"></div>
+</section>
+
+<section class="works"><p class="small">HOW IT WORKS</p><h2>Simple. Fast. Life-Saving.</h2>
+  <div class="steps">
+    <div><span>🩸</span><b>01. Request</b><p>Family posts SOS</p></div>
+    <div><span>🔍</span><b>02. Match</b><p>System finds compatible donors</p></div>
+    <div><span>📢</span><b>03. Respond</b><p>Donor clicks I Can Donate</p></div>
+    <div><span>❤️</span><b>04. Save Lives</b><p>Blood reaches hospital</p></div>
+  </div>
+</section>
+
+<footer><b>🩸 RedRelay - LifeLine</b><p>Connecting donors, hospitals & families in real-time.</p><small>Demo Project | Frontend Only | Privacy Masked</small></footer>
+</div>
+
+<script>
+const compatibility={"O-":["O-"],"O+":["O-","O+"],"A-":["O-","A-"],"A+":["O-","O+","A-","A+"],"B-":["O-","B-"],"B+":["O-","O+","B-","B+"],"AB-":["O-","A-","B-","AB-"],"AB+":["O-","O+","A-","A+","B-","B+","AB-","AB+"]};
+let donors=JSON.parse(localStorage.getItem("donors"))||[
+ {name:"Rahul",blood:"O+",city:"Hyderabad",locality:"Maisammaguda",phone:"9876543210",available:"Available",last:0},
+ {name:"Priya",blood:"B+",city:"Hyderabad",locality:"Medchal",phone:"9876543211",available:"Available",last:0},
+ {name:"Anil",blood:"A+",city:"Hyderabad",locality:"Kompally",phone:"9876543212",available:"Available",last:0},
+ {name:"Sneha",blood:"O-",city:"Hyderabad",locality:"Secunderabad",phone:"9876543213",available:"Available",last:0},
+ {name:"Arjun",blood:"AB+",city:"Hyderabad",locality:"Maisammaguda",phone:"9876543214",available:"Available",last:0},
+ {name:"Sanjana",blood:"B+",city:"Hyderabad",locality:"Maisammaguda",phone:"9876543215",available:"Available",last:0}];
+let requests=JSON.parse(localStorage.getItem("requests"))||[
+ {patient:"Rahul",blood:"B+",hospital:"Apollo Hospital",city:"Hyderabad",units:2,filled:0,stage:0},
+ {patient:"Priya",blood:"O+",hospital:"Yashoda Hospital",city:"Hyderabad",units:3,filled:1,stage:1},
+ {patient:"Anil",blood:"A+",hospital:"KIMS Hospital",city:"Hyderabad",units:2,filled:0,stage:0}];
+function save(){localStorage.setItem("donors",JSON.stringify(donors));localStorage.setItem("requests",JSON.stringify(requests));}
+function mask(p){return "XXXXX X"+p.slice(6);}
+function locked(d){return d.last && Date.now()-d.last<90*24*60*60*1000;}
+function switchTab(t){document.getElementById("loginForm").style.display=t==="login"?"flex":"none";document.getElementById("signupForm").style.display=t==="signup"?"flex":"none";document.getElementById("tabLogin").classList.toggle("active",t==="login");document.getElementById("tabSignup").classList.toggle("active",t==="signup");}
+function showMain(n,r){document.getElementById("loginPage").style.display="none";document.getElementById("mainSite").style.display="block";document.getElementById("userName").innerText=n+" ("+r+")";window.scrollTo(0,0);}
+function logout(){document.getElementById("mainSite").style.display="none";document.getElementById("loginPage").style.display="flex";}
+document.getElementById("loginForm").onsubmit=e=>{e.preventDefault();let n=loginEmail.value.split("@")[0];alert("Welcome "+n+"! Login Successful as "+loginRole.value);showMain(n,loginRole.value);};
+document.getElementById("signupForm").onsubmit=e=>{e.preventDefault();alert("Account Created for "+signName.value+"! Please Login.");switchTab('login');e.target.reset();};
+document.getElementById("sosForm").onsubmit=e=>{e.preventDefault();if(new Date(deadline.value)<=new Date()){alert("Deadline must be in future!");return;}requests.unshift({patient:pName.value,blood:blood.value,hospital:hospital.value,city:city.value,units:+units.value,filled:0,stage:0});save();renderReq();updateCounts();let m=donors.filter(d=>compatibility[blood.value].includes(d.blood)&&d.city.toLowerCase()===city.value.toLowerCase());alert("SOS Broadcasted! SMS Alert sent to "+m.length+" compatible donors. Groups: "+compatibility[blood.value].join(", "));e.target.reset();};
+document.getElementById("donorForm").onsubmit=e=>{e.preventDefault();donors.push({name:dName.value,blood:dBlood.value,city:dCity.value,locality:dLocality.value,phone:dPhone.value,available:dAvail.value,last:0});save();renderDonors();updateCounts();document.getElementById("cert").innerHTML=`<div class="card" style="text-align:center">🏅 <b>Thank You ${dName.value}!</b><br>You are a Life Saver.<br><button class="red" onclick="alert('Certificate Downloaded!')">Download Certificate</button></div>`;e.target.reset();alert("Donor Registered! Phone Masked for Privacy.");};
+function renderReq(){document.getElementById("reqList").innerHTML=requests.map((r,i)=>`<div class="card"><span class="pulse"></span> <b>${r.patient} - ${r.blood}</b> <span style="color:red;font-size:12px">● URGENT</span><p>🏥 ${r.hospital} | ${r.city}</p><p>🩸 ${r.filled}/${r.units} Units Fulfilled</p><div class="stepper">${["Open / Broadcasted","Donors Responded","Fulfilled / In Transit","Closed"].map((s,j)=>`<span class="step ${j<=r.stage?'done':''}">${s}</span>`).join("")}</div><button class="red" onclick="advance(${i})">I Can Donate</button> <button onclick="simulate(${i})">Simulate SMS Alert</button></div>`).join("");}
+function advance(i){if(requests[i].filled<requests[i].units)requests[i].filled++;if(requests[i].filled>0&&requests[i].stage<1)requests[i].stage=1;else if(requests[i].stage<2)requests[i].stage++;save();renderReq();}
+function simulate(i){alert("SMS Alert Sent to compatible donors for "+requests[i].patient+" ("+requests[i].blood+")!");}
+function renderDonors(){let fb=document.getElementById("fBlood").value;let fc=document.getElementById("fCity").value.toLowerCase();if(!fb){document.getElementById("donorList").innerHTML="<p>Please select recipient blood group.</p>";return;}let list=donors.filter(d=>compatibility[fb].includes(d.blood)&&(!fc||d.city.toLowerCase().includes(fc)));document.getElementById("donorList").innerHTML=list.map(d=>`<div class="card"><h3>${d.name} - ${d.blood}</h3><p>📍 ${d.city}, ${d.locality}</p><p>📞 ${mask(d.phone)} (Masked)</p><p>${locked(d)?"🔒 Locked - 90 Days Recovery":d.available}</p><button class="red" onclick="alert('Relay Request Sent! Donor will contact via App.')">I Can Donate</button></div>`).join("")||"<p>No donors found.</p>";}
+function updateCounts(){document.getElementById("countDonors").innerText=donors.length;document.getElementById("countReq").innerText=requests.filter(r=>r.stage<3).length;}
+renderReq();renderDonors();updateCounts();
+</script>
+</body>
+</html>
