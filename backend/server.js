@@ -127,7 +127,7 @@ app.delete('/api/donors/:id', async (req, res) => {
   res.json({ message: 'Deleted!' });
 });
 
-const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`Server running on ${process.env.PORT || 3000} + PORT`);
 });
