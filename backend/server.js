@@ -93,38 +93,8 @@ server.listen(PORT, () => {
   console.log(`✅ BloodRelay Backend running at http://localhost:${PORT}`);
   console.log(`✅ API: http://localhost:${PORT}/api/health`);
 });
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-mongoose.connect('mongodb://localhost:27017/bloodrelay');
-
-const Donor = mongoose.model('Donor', {
-  name: String,
-  bloodGroup: String,
-  city: String,
-  phone: String
-});
-
-app.get('/api/donors', async (req, res) => {
-  let donors = await Donor.find();
-  res.json(donors);
-});
-
-app.post('/api/donors', async (req, res) => {
-  let donor = new Donor(req.body);
-  await donor.save();
-  res.json(donor);
-});
-
-// IDHI KOTTHA - DELETE BUTTON KOSAM
-app.delete('/api/donors/:id', async (req, res) => {
-  await Donor.findByIdAndDelete(req.params.id);
-  res.json({ message: 'Deleted!' });
+server.listen(PORT, () => {
+  console.log(`✅ BloodRelay Backend running...`);
 });
 
 
