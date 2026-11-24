@@ -1,0 +1,17 @@
+{
+  "name": "bloodrelay-backend",
+  "version": "1.0.0",
+  "description": "BloodRelay - Blood Donation Management System Backend",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "author": "Sanjana",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "mongoose": "^9.13.0"
+  }
+}
